@@ -1,34 +1,51 @@
-interface Options{
-    [key: string]: string; 
+enum ErrorCodes {
+    Unauthorized = 401,
+    NotFound = 404
 }
+
+enum RequestTypes {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    DELETE = 'DELETE'
+}
+
+export interface Options {
+    [key: string]: string;
+}
+
+interface ErrorResponse extends Response {
+    ok: boolean;
+    status: number;
+    statusText: string;
+}
+
 class Loader {
     private baseLink: string;
     private options: Options;
-    constructor(baseLink, options) {
+
+    constructor(baseLink: string, options: Options) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
-    getResp(
-        { endpoint, options = {} },
-        callback = () => {
-            console.error('No callback for GET response');
-        }
-    ) {
-        this.load('GET', endpoint, callback, options);
+    public getResp<T>({ endpoint, options = {} }: { endpoint: string; options?: Options }, callback: (data: T) => void = () => {
+        console.error('No callback for GET response');
+    }): void {
+        this.load<T>(RequestTypes.GET, endpoint, callback, options);
     }
 
-    errorHandler(res) {
+    private errorHandler(res: ErrorResponse): Response {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === ErrorCodes.Unauthorized || res.status === ErrorCodes.NotFound) {
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
-            throw Error(res.statusText);
+            }
+            throw new Error(res.statusText);
         }
-
         return res;
     }
 
-    makeUrl(options, endpoint) {
+    private makeUrl(options: Options, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -39,20 +56,11 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method, endpoint, callback, options = {}) {
-        const url = this.makeUrl(options, endpoint);
-        console.log('Request URL:', url); // Print the request URL
-
-        fetch(url, { method })
+    private load<T>(method: RequestTypes, endpoint: string, callback: (data: T) => void, options: Options = {}): void {
+        fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
-            .then((res) => {
-                console.log('Response:', res); // Print the response object before parsing
-                return res.json();
-            })
-            .then((data) => {
-                console.log('Parsed Data:', data); // Print the parsed JSON data
-                callback(data);
-            })
+            .then((res) => res.json())
+            .then((data: T) => callback(data))
             .catch((err) => console.error(err));
     }
 }
