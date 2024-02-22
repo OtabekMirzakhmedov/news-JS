@@ -40,10 +40,19 @@ class Loader {
     }
 
     load(method, endpoint, callback, options = {}) {
-        fetch(this.makeUrl(options, endpoint), { method })
+        const url = this.makeUrl(options, endpoint);
+        console.log('Request URL:', url); // Print the request URL
+
+        fetch(url, { method })
             .then(this.errorHandler)
-            .then((res) => res.json())
-            .then((data) => callback(data))
+            .then((res) => {
+                console.log('Response:', res); // Print the response object before parsing
+                return res.json();
+            })
+            .then((data) => {
+                console.log('Parsed Data:', data); // Print the parsed JSON data
+                callback(data);
+            })
             .catch((err) => console.error(err));
     }
 }

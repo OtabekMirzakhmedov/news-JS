@@ -1,9 +1,5 @@
 import './sources.css';
-
-interface SourceItem {
-    id: string;
-    name: string;
-}
+import { Source as SourceItem } from '../../../types';
 
 class Sources {
     public draw(data: SourceItem[]): void {
