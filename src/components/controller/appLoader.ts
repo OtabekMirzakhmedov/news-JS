@@ -7,9 +7,9 @@ interface AppOptions extends Options {
 
 class AppLoader extends Loader {
     constructor() {
-        const apiUrl: string = process.env.API_URL || ''; // Type annotation for apiUrl
+        const apiUrl: string = process.env.API_URL || '';
         const options: AppOptions = {
-            apiKey: process.env.API_KEY || '', // Type annotation for apiKey
+            apiKey: process.env.API_KEY || '',
         };
 
         super(apiUrl, options);
