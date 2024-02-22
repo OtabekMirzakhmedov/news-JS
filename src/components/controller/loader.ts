@@ -1,4 +1,9 @@
+interface Options{
+    [key: string]: string; 
+}
 class Loader {
+    private baseLink: string;
+    private options: Options;
     constructor(baseLink, options) {
         this.baseLink = baseLink;
         this.options = options;
