@@ -1,13 +1,13 @@
 enum ErrorCodes {
     Unauthorized = 401,
-    NotFound = 404
+    NotFound = 404,
 }
 
 enum RequestTypes {
     GET = 'GET',
     POST = 'POST',
     PUT = 'PUT',
-    DELETE = 'DELETE'
+    DELETE = 'DELETE',
 }
 
 export interface Options {
@@ -29,9 +29,12 @@ class Loader {
         this.options = options;
     }
 
-    public getResp<T>({ endpoint, options = {} }: { endpoint: string; options?: Options }, callback: (data: T) => void = () => {
-        console.error('No callback for GET response');
-    }): void {
+    public getResp<T>(
+        { endpoint, options = {} }: { endpoint: string; options?: Options },
+        callback: (data: T) => void = () => {
+            console.error('No callback for GET response');
+        }
+    ): void {
         this.load<T>(RequestTypes.GET, endpoint, callback, options);
     }
 

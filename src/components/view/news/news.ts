@@ -1,4 +1,4 @@
-import { Article,ArticleResponse } from '../../../types';
+import { Article, ArticleResponse } from '../../../types';
 import './news.css';
 
 class News {

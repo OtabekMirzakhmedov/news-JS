@@ -1,4 +1,4 @@
-import { SourceResponse, ArticleResponse  } from '../../types';
+import { SourceResponse, ArticleResponse } from '../../types';
 import News from './news/news';
 import Sources from './sources/sources';
 

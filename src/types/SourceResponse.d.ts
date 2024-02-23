@@ -1,4 +1,4 @@
-export interface SourceResponse{
-    status:string;
+export interface SourceResponse {
+    status: string;
     sources: Source[];
 }

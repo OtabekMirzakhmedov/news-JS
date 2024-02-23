@@ -1,4 +1,4 @@
-export interface ArticleResponse{
-    status:string;
+export interface ArticleResponse {
+    status: string;
     articles: Article[];
 }

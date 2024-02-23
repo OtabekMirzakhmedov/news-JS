@@ -1,8 +1,6 @@
 import './sources.css';
 import { Source, SourceResponse } from '../../../types';
 
-
-
 class Sources {
     public draw(data: SourceResponse): void {
         const fragment: DocumentFragment = document.createDocumentFragment();
