@@ -8,7 +8,7 @@ header {
     padding: 10px 30px;
 }
 
-main .sources{
+main .sources {
     padding-left: 30px;
 }
 
@@ -38,7 +38,6 @@ footer .copyright:before {
     content: '©';
 }
 
-
 @media screen and (max-width: 400px) {
     header h1 {
         font-size: 30px;
@@ -48,8 +47,8 @@ footer .copyright:before {
     header {
         padding: 10px 20px;
     }
-    
-    main .sources{
-        padding-left:20px;
+
+    main .sources {
+        padding-left: 20px;
     }
 }
