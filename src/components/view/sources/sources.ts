@@ -1,8 +1,10 @@
 import './sources.css';
-import { Source as SourceItem } from '../../../types';
+import { Source, SourceResponse } from '../../../types';
+
+
 
 class Sources {
-    public draw(data: SourceItem[]): void {
+    public draw(data: SourceResponse): void {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
 
@@ -11,7 +13,7 @@ class Sources {
             return;
         }
 
-        data.forEach((item: SourceItem) => {
+        data.sources.forEach((item: Source) => {
             const sourceClone: DocumentFragment = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
             const sourceItemElement: Element | null = sourceClone.querySelector('.source__item');
 

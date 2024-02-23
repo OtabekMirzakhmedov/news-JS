@@ -1,11 +1,6 @@
-import { Article, Source } from '../../types';
+import { SourceResponse, ArticleResponse  } from '../../types';
 import News from './news/news';
 import Sources from './sources/sources';
-
-interface SourceData{
-    status:string;
-    sources: Source[];
-}
 
 export class AppView {
     private news: News;
@@ -15,12 +10,12 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data: Article[]) {
+    drawNews(data: ArticleResponse) {
+        console.log('appview ', data);
         this.news.draw(data);
     }
 
-    drawSources(data: Source[]): void {
-
+    drawSources(data: SourceResponse): void {
         this.sources.draw(data);
     }
 }

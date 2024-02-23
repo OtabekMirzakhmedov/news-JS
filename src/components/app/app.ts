@@ -1,11 +1,5 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { Source } from '../../types';
-
-interface SourceData{
-    status:string;
-    sources: Source[];
-}
 
 class App {
     private controller: AppController;
@@ -17,7 +11,6 @@ class App {
     }
 
     start(): void {
-
         const sourcesElement = document.querySelector('.sources') as HTMLElement | null;
 
         if (sourcesElement) {

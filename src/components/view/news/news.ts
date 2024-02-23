@@ -1,9 +1,10 @@
-import { Article } from '../../../types';
+import { Article,ArticleResponse } from '../../../types';
 import './news.css';
 
 class News {
-    draw(data: Article[]): void {
-        const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+    draw(data: ArticleResponse): void {
+        const articles: Article[] = data.articles;
+        const news = articles.length >= 10 ? articles.slice(0, 10) : articles;
 
         const fragment = document.createDocumentFragment();
         const newsItemTemp: HTMLTemplateElement | null = document.querySelector('#newsItemTemp');
