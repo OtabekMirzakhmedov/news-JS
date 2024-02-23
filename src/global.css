@@ -2,6 +2,7 @@ body {
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 header {
@@ -22,20 +23,23 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
 }
-footer .copyright {
+footer .year {
     font-size: 14px;
-    color: #333;
+    color: white;
     text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+
 }
-footer .copyright a {
-    color: #444;
-}
-footer .copyright a:hover {
-    color: #555;
-}
-footer .copyright:before {
-    content: '©';
+
+footer .RollingScopes {
+    background: url('./rs_school_js.svg') no-repeat center center;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+    display: block;
 }
 
 @media screen and (max-width: 400px) {
