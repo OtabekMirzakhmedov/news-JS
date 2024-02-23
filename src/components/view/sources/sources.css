@@ -2,14 +2,11 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 120px;
     align-items: center;
     font:
         300 1em 'Fira Sans',
         sans-serif;
     justify-self: center;
-    padding: auto;
-    margin: 0 auto;
 }
 
 .sources-dropdown {

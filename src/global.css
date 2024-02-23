@@ -8,6 +8,10 @@ header {
     padding: 10px 30px;
 }
 
+main .sources{
+    padding-left: 30px;
+}
+
 header h1 {
     font-size: 40px;
     font-weight: 800;
@@ -34,3 +38,18 @@ footer .copyright:before {
     content: '©';
 }
 
+
+@media screen and (max-width: 400px) {
+    header h1 {
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    header {
+        padding: 10px 20px;
+    }
+    
+    main .sources{
+        padding-left:20px;
+    }
+}
