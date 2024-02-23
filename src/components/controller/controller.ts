@@ -1,6 +1,5 @@
 import AppLoader from './appLoader';
 import { ArticleResponse, SourceResponse } from '../../types';
-import { Article } from '../../types';
 
 class AppController extends AppLoader {
     getSources(callback: (data: SourceResponse) => void): void {
@@ -12,29 +11,20 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: Event, callback: (data: ArticleResponse) => void): void {
-        let target = e.target as HTMLElement;
-        const newsContainer = e.currentTarget as HTMLElement;
-
-        while (target !== newsContainer) {
-            if (target.classList.contains('source__item')) {
-                const sourceId = target.getAttribute('data-source-id');
-                if (newsContainer.getAttribute('data-source') !== sourceId) {
-                    newsContainer.setAttribute('data-source', sourceId || '');
-                    super.getResp<ArticleResponse>(
-                        {
-                            endpoint: 'everything',
-                            options: {
-                                sources: sourceId || '',
-                            },
-                        },
-                        callback
-                    );
-                }
-                return;
-            }
-            target = target.parentNode as HTMLElement;
-        }
+    getNews(callback: (data: ArticleResponse) => void): void {
+        const dropdown = document.querySelector('.sources-dropdown') as HTMLSelectElement;
+        console.log(dropdown);
+        const sourceId: string = dropdown.value;
+        console.log('controller, ', sourceId);
+        super.getResp<ArticleResponse>(
+            {
+                endpoint: 'everything',
+                options: {
+                    sources: sourceId,
+                },
+            },
+            callback
+        );
     }
 }
 
