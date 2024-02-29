@@ -11,7 +11,7 @@ class App {
     }
 
     start(): void {
-        const sourcesElement = document.querySelector('.sources') as HTMLElement | null;
+        const sourcesElement = document.querySelector('.sources');
 
         if (sourcesElement) {
             sourcesElement.addEventListener('click', (e) =>
