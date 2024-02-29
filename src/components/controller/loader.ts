@@ -41,7 +41,7 @@ class Loader {
     private errorHandler(res: ErrorResponse): Response {
         if (!res.ok) {
             if (res.status === ErrorCodes.Unauthorized || res.status === ErrorCodes.NotFound) {
-                console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
+                throw new Error(res.status.toString());
             }
             throw new Error(res.statusText);
         }

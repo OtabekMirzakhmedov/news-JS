@@ -11,7 +11,6 @@ export class AppView {
     }
 
     drawNews(data: ArticleResponse) {
-        console.log('appview ', data);
         this.news.draw(data);
     }
 
